@@ -1,0 +1,77 @@
+package BookManagement;
+import java.util.*;
+public class BookManagement {
+	public static void main(String[] args){
+		List books=new ArrayList();
+		Book b=new Book("1","浮生");
+		admi ad=new admi();
+		books.add(0,b);
+		Scanner sc=new Scanner(System.in);
+		while(true){
+			System.out.println("请输入您想进行的操作："+"\n"+"1.查询馆藏所有图书"+"\n"+
+					"2.借书"+"\n"+"3。还书"+"\n"+"4.增删改查");
+			int cho=sc.nextInt();
+			switch(cho){
+			case 1:{
+				ad.searchAll(books);
+				break;
+			}
+			case 2:{
+				System.out.println("请输入想要借阅的图书编号：");
+				String id=sc.next();
+				ad.borrowBook(books, id);
+				break;
+			}
+			case 3:{
+				System.out.println("请输入想要归还的图书编号：");
+				String id=sc.next();
+				ad.returnBook(books, id);
+				break;
+			}
+			case 4:{
+				System.out.println("请选择想要进行的操作："+"\n"
+						+"1.增加图书"+"\n"+"2.删除图书"+"\n"+"3.修改图书信息"+"\n"+"4.按图书id查询图书");
+				int choo=sc.nextInt();
+				switch(choo){
+				case 1:{
+					System.out.println("请输入添加的图书id");
+					String id=sc.next();
+					System.out.println("请输入图书名");
+					String name=sc.next();
+					ad.addBook(books, id, name);
+					break;
+				}
+				case 2:{
+					System.out.println("请输入想要删除的图书");
+					String id=sc.next();
+					ad.delBook(books, id);
+					break;
+				}
+				case 3:{
+					System.out.println("请输入想要修改的图书信息的图书编号");
+					String id=sc.next();
+					System.out.println("请输入修改后的图书名");
+					String name=sc.next();
+					ad.modifyBook(books, id, name);
+					break;
+				}
+				case 4:{
+					System.out.println("请输入想要查询的图书编号");
+					String id=sc.next();
+					ad.searchWithId(books, id);
+					break;
+				}
+				default:{
+					System.out.println("输入命令错误");
+				}
+				}
+				break;
+			}
+			default:{
+				System.out.println("输入玲玲错误");
+			}
+			}
+		}
+	}
+
+}

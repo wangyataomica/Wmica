@@ -1,0 +1,96 @@
+package BookManagement;
+import java.util.*;
+public class admi {
+	//List list=new ArrayList();
+	public void searchAll(List list){//查询所有图书
+		for (int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			System.out.println(i+1+"\t"+b.getName()+"\t"+b.getState());
+				
+		}
+	}
+	public void borrowBook(List list,String id){
+		//int i=Integer.parseInt(id);没有对list的size先做>0比较，会导致空图书时，借书和还书之类的会什么都不输出
+		for (int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			if(b.getId().equals(id) && b.state==true){
+				b.borrowSetState();
+				System.out.println("借书成功");
+				break;
+			}
+			else if(b.getId().equals(id)&&b.state==false){
+				System.out.println("借书失败,请核实还书编号");
+				break;
+			}
+			else{
+				System.out.println("借书失败，未找到对应编号的图书");
+			}
+		}
+	}
+	public void returnBook(List list,String id){
+		//int i=Integer.parseInt(id);
+		for (int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			if(b.getId().equals(id)&&b.state==false){
+				b.returnSetState();
+				System.out.println("还书成功");
+				break;
+			}
+			else if(b.getId().equals(id)&&b.state==true){
+				System.out.println("还书失败，请核实输入的图书编号");
+				break;
+			}
+			else{
+				System.out.println("还书失败，未找到对应编号的图书");
+			}
+		}
+	}
+	public void addBook(List list,String bookId,String bookName){
+		int i=Integer.parseInt(bookId);
+		Book b=new Book(bookId,bookName);
+		int j=i-1;
+		list.add(j,b);
+		System.out.println("添加成功");
+	}
+	public void delBook(List list,String id){
+		//int i=Integer.parseInt(bookId);
+		for (int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			if(b.getId().equals(id)){
+				list.remove(i);
+				System.out.println("删除成功");
+				break;
+			}
+			else{
+				System.out.println("删除失败，未找到相应的图书");
+			}
+		}
+	}
+	public void modifyBook(List list,String id,String name){
+		for(int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			if(b.getId().equals(id)){
+				b.setId(id);
+				b.setName(name);
+				System.out.println("修改成功");
+				break;
+			}
+			else{
+				System.out.println("修改失败，未找到相应的图书");
+			}
+		}
+	}
+	public void searchWithId(List list,String id){
+		for(int i=0;i<list.size();i++){
+			Book b=(Book)list.get(i);
+			if(b.getId().equals(id)){
+				System.out.println(b.getId()+"\t"+b.getName()+"\t"+b.getState());
+				break;
+			}
+			else{
+				System.out.println("未找到相应的图书");
+			}
+		}
+	}
+
+}

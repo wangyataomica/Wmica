@@ -1,0 +1,34 @@
+package BookManagement;
+
+public class Book {
+	String bookName;
+	String bookId;
+	boolean state;
+	public Book(String bookId,String bookName){
+		this.bookName=bookName;
+		this.bookId=bookId;
+		this.state=true;
+	}
+	public String getId(){
+		return bookId;
+	}
+	public void setId(String bookId){
+		this.bookId=bookId;
+	}
+	public String getName(){
+		return bookName;
+	}
+	public void setName(String bookName){
+		this.bookName=bookName;
+	}
+	public boolean getState(){
+		return state;
+	}
+	public void borrowSetState(){
+		this.state=false;
+	}
+	public void returnSetState(){
+		this.state=true;
+	}
+
+}
